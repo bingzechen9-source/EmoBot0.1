@@ -1,0 +1,10 @@
+# 本地开发：可选 Ollama、关闭 RAG（无需 PostgreSQL）
+spring:
+  ai:
+    model:
+      chat: ollama
+      embedding: ollama
+
+emobot:
+  rag:
+    enabled: false

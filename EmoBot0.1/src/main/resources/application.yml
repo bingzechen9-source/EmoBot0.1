@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: EmoBot
+  # 默认不启用数据库，使用 --spring.profiles.active=prod 时需配置 datasource
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration
+  ai:
+    model:
+      chat: openai
+      embedding: openai
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: qwen2.5:7b
+          temperature: 0.7
+    openai:
+      # 通义 DashScope：base-url 不要包含 /v1，Spring AI 会拼接 /v1/chat/completions、/v1/embeddings
+      base-url: https://dashscope.aliyuncs.com/compatible-mode
+      api-key: ${DASHSCOPE_API_KEY:sk-aef3d979f8674679a57997120f03da3f}
+      chat:
+        options:
+          model: qwen-plus
+          temperature: 0.7
+      # 通义 embedding 模型，1536 维（与 text-embedding-v3 默认一致）
+      embedding:
+        options:
+          model: text-embedding-v3
+    mcp:
+      server:
+        protocol: STREAMABLE
+
+emobot:
+  memory:
+    storage-path: ./data/chat-memory
+  # 生产启用 RAG 时用 --spring.profiles.active=prod，需配置 PostgreSQL
+  rag:
+    enabled: false
+    top-k: 4
+    similarity-threshold: 0.6
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha

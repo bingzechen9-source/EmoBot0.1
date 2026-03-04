@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmoBot - 情感指导助手</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-wrap">
+          <div class="logo-icon">
+            <span class="logo-emoji">💭</span>
+            <div class="logo-pulse"></div>
+          </div>
+          <div>
+            <h1>EmoBot</h1>
+            <span class="logo-sub">情感指导助手</span>
+          </div>
+        </div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          在线
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-label">快捷工具</span>
+        <button type="button" class="nav-btn" data-prompt="我想做一次478呼吸练习，请指导我">
+          <span class="nav-btn-icon">🌬️</span>
+          <span>呼吸练习</span>
+        </button>
+        <button type="button" class="nav-btn" data-prompt="帮我记录一下现在的情绪状态">
+          <span class="nav-btn-icon">📝</span>
+          <span>情绪记录</span>
+        </button>
+        <button type="button" class="nav-btn" data-prompt="推荐一个适合我现在心情的冥想练习">
+          <span class="nav-btn-icon">🧘</span>
+          <span>冥想推荐</span>
+        </button>
+        <button type="button" class="nav-btn" data-prompt="我有点焦虑，能给我一些建议吗">
+          <span class="nav-btn-icon">💆</span>
+          <span>情绪疏导</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="tech-tags">
+          <span>Spring AI</span>
+          <span>RAG</span>
+          <span>MCP</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="header">
+        <div class="header-title">
+          <h2>对话</h2>
+          <span class="conversation-hint">多轮对话 · 记忆持久化</span>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="icon-btn" id="clearBtn" title="清空对话">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="chat-container">
+        <div id="chatMessages" class="chat-messages">
+          <div class="welcome-msg">
+            <div class="welcome-icon">✨</div>
+            <h3>你好，我是 EmoBot</h3>
+            <p>你的情感指导助手，支持多轮对话、记忆持久化，并能调用图片搜索、地图、呼吸练习等工具帮助你。</p>
+            <p class="welcome-tip">试试下方快捷按钮或左侧工具，或直接告诉我你的想法～</p>
+          </div>
+        </div>
+
+        <div class="quick-moods">
+          <span class="quick-label">快速表达</span>
+          <div class="mood-chips">
+            <button type="button" class="mood-chip" data-text="今天心情不太好">😔 心情不好</button>
+            <button type="button" class="mood-chip" data-text="我感觉有点焦虑">😰 有点焦虑</button>
+            <button type="button" class="mood-chip" data-text="需要有人听我说说话">💬 想聊聊天</button>
+            <button type="button" class="mood-chip" data-text="想放松一下">🧘 想放松</button>
+            <button type="button" class="mood-chip nav-prompt" data-text="我想做一次478呼吸练习，请指导我">🌬️ 呼吸练习</button>
+            <button type="button" class="mood-chip nav-prompt" data-text="推荐一个适合我现在心情的冥想练习">🧘 冥想推荐</button>
+          </div>
+        </div>
+
+        <form id="chatForm" class="chat-input-area">
+          <div class="input-wrap">
+            <input type="text" id="messageInput" placeholder="输入你的想法，按 Enter 发送..." autocomplete="off" maxlength="2000">
+            <span class="char-count"><span id="charCount">0</span>/2000</span>
+          </div>
+          <button type="submit" id="sendBtn" class="send-btn" aria-label="发送">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+          </button>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
